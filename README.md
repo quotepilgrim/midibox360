@@ -81,7 +81,3 @@ midiBox360 is just a silly little personal project of mine, born out of
 frustration caused by the lack of a decent way to turn a gamepad into a proper
 MIDI controller. The way the program behaves is tailored to my own personal
 needs, but I hope it may be useful to someone else.
-
-## License
-
-The MIT License
