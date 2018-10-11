@@ -22,7 +22,7 @@ $ pip install mido
 $ pip install pygame
 ```
 
-On Windows, you may need to run cmd with Administrator privileges before
+On Windows, you may need to run `cmd` with Administrator privileges before
 running these commands.
 
 ### Installing
