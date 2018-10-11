@@ -1,6 +1,6 @@
 # midiBox360
 
-midiBox360 turns your Xbox 360 controller into a MIDI controller that can be
+midiBox360 turns an Xbox 360 controller into a MIDI controller that can be
 used on any DAW. It works on Linux and Windows. It may run on other platforms,
 but it hasn't been tested.
 
