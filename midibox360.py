@@ -5,24 +5,24 @@ import mido
 import pygame
 
 default_config = """
-# Choose which port midiBox360 outputs to. Must be inside quotation marks
-# An empty string can be used to choose the system's default port
+# Choose which port midiBox360 outputs to. Must be inside quotation marks.
+# An empty string can be used to choose the system's default port.
 port = ""
 
-# Select a mode to play in based on scale degree. Can be a number from 1 to 7
+# Select a mode to play in based on scale degree. Can be a number from 1 to 7.
 # 1 = ionian (major); 2 = dorian; 3 = phrygyan; 4 = lydian; 5 = mixolydian;
 # 6 = aeolian (minor); 7 = locrian
 mode = 1
 
-# Select a MIDI channel to output to. Can be a number from 1 to 16
+# Select a MIDI channel to output to. Can be a number from 1 to 16.
 channel = 4
 
-# Select a note to be used as the root note. Can be a number from 0 to 127
+# Select a note to be used as the root note. Can be a number from 0 to 127.
 # 60 = middle C
 base_note = 60
 
 [controls]
-# Change which buttons the face buttons are mapped to
+# Change which buttons the face buttons are mapped to.
 # Valid values: "a", "b", "x", "y".
 a_button = "a"
 b_button = "b"
