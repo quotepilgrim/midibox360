@@ -2,6 +2,7 @@
 
 import toml
 import mido
+import mido.backends.pygame
 import pygame
 
 default_config = """
