@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import os
+import sys
 import toml
 import mido
 import mido.backends.pygame
