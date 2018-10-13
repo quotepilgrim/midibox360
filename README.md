@@ -75,7 +75,7 @@ Pressing the Y face button will change the current mode you're playing in into
 the mode corresponding to the scale degree equivalent to the combination of LT,
 LB and RB being held down.
 
-*NOTE:* Since `pygame` uses DirectInput on Windows, both triggers are assigned
+**NOTE:** Since `pygame` uses DirectInput on Windows, both triggers are assigned
 the same axis, which makes it impossible to detect if both are being pressed at
 the same time (pressing both gives the same output as pressing none). As a
 result, I decided not to assign any function to the right trigger as of now.
