@@ -150,7 +150,7 @@ while done==False:
                  or joystick.get_button(x_button)
             seventh = joystick.get_button(b_button)
             set_mode = joystick.get_button(y_button)
-            chord_mode = joystick.get_axis(lstick_x) * ls_x_inv > 0.2
+            chord_mode = joystick.get_axis(lstick_x) * ls_x_inv < -0.5
             maj_chord = joystick.get_button(y_button)
             min_chord = joystick.get_button(a_button)
             dom_chord = joystick.get_button(b_button)
@@ -169,9 +169,9 @@ while done==False:
                 play += 2
             if joystick.get_button(r_bumper):
                 play += 4
-            if joystick.get_axis(lstick_y) * ls_y_inv < -0.8:
+            if joystick.get_axis(lstick_y) * ls_y_inv < -0.5:
                 octave = 1
-            if joystick.get_axis(lstick_y) * ls_y_inv > 0.8:
+            if joystick.get_axis(lstick_y) * ls_y_inv > 0.5:
                 octave = -1
 
             if not chord_mode:
