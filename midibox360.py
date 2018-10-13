@@ -12,7 +12,10 @@ os.chdir(os.path.dirname(sys.argv[0]))
 default_config = """
 # Choose which port midiBox360 outputs to. Must be inside quotation marks.
 # An empty string can be used to choose the system's default port.
-port = ""
+port = "midiBox360"
+
+# ID of joystick to be used.
+joystick = 0
 
 # Select a mode to play in based on scale degree. Can be a number from 1 to 7.
 # 1 = ionian (major); 2 = dorian; 3 = phrygian; 4 = lydian; 5 = mixolydian;
@@ -81,6 +84,7 @@ octave = 0
 
 # Load values from config file.
 controls = config['controls']
+joystick_id = config['joystick']
 mode = config['mode'] - 1
 channel = config['channel'] - 1
 base_note = config['base_note'] - notes[mode]
@@ -119,11 +123,8 @@ done = False
 
 # Main program loop.
 while done==False:
-    joystick_count = pygame.joystick.get_count()
-
-    for i in range(joystick_count):
-        joystick = pygame.joystick.Joystick(i)
-        joystick.init()
+    joystick = pygame.joystick.Joystick(joystick_id)
+    joystick.init()
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
