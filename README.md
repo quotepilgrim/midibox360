@@ -90,8 +90,8 @@ platforms.
 The configuration file allows full remapping of the controller, so in theory you
 can use any controller you want with midiBox360, not just an Xbox 360 one, as
 long as you can find out which value correspond to each button/axis on your
-controller*. Bear in mind midiBox360, as the name implies,was made with the Xbox
-360 controller in mind, so it may not work properly with other controllers.
+controller*. Bear in mind midiBox360, as the name implies, was made with the
+Xbox 360 controller in mind, so it may not work properly with other controllers.
 
 \*The "test" tab on the "controller properties" window on Windows counts
 starting from 1, while Python counts starting from 0, so you have to subtract 1
