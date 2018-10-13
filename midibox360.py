@@ -55,7 +55,7 @@ right_y_invert = false
 
 # Find which note to play.
 def msg(diastep, semitone):
-    return mido.Message('note_on', channel=channel, note=(base_note + semitone\
+    return mido.Message('note_on', channel=channel, note=(base_note + semitone
                         + 12 * octave + notes[play + diastep + mode]) % 128)
 
 # Load configuration file if it exists. Otherwise generate default config file.
@@ -163,11 +163,11 @@ while done==False:
                 if joystick.get_axis(l_trigger) > 0.8:
                     play += 1
             else:
-                if joystick.get_button(l_trigger) == 1:
+                if joystick.get_button(l_trigger):
                     play += 1
-            if joystick.get_button(l_bumper) == 1:
+            if joystick.get_button(l_bumper):
                 play += 2
-            if joystick.get_button(r_bumper) == 1:
+            if joystick.get_button(r_bumper):
                 play += 4
             if joystick.get_axis(lstick_y) * ls_y_inv < -0.8:
                 octave = 1
@@ -210,7 +210,8 @@ while done==False:
         if event.type == pygame.JOYBUTTONUP:
             # Release all notes.
                 for i in range(0, 127):
-                    outport.send(mido.Message('note_off', channel=channel, note=i))
+                    outport.send(mido.Message('note_off',
+                                 channel=channel, note=i))
 
     clock.tick(0)
 
