@@ -133,8 +133,10 @@ done = False
 
 # Main program loop.
 while done==False:
-    joystick = pygame.joystick.Joystick(joystick_id)
-    joystick.init()
+
+    if pygame.joystick.get_count():
+        joystick = pygame.joystick.Joystick(joystick_id)
+        joystick.init()
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
