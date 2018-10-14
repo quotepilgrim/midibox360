@@ -8,6 +8,7 @@ import mido
 import mido.backends.pygame
 import pygame
 
+# Determine config file location.
 if platform.system() == 'Windows':
     env = 'localappdata'
     config_path = ''
@@ -18,6 +19,7 @@ else:
 config_dir = os.path.join(os.environ[env], config_path, 'midibox360')
 config_file = os.path.join(config_dir, 'config.toml')
 
+# Default config file contents.
 default_config = """
 # Choose which port midiBox360 outputs to. Must be inside quotation marks.
 # An empty string can be used to choose the system's default port.
@@ -39,36 +41,73 @@ channel = 4
 base_note = 60
 
 [controls]
-# Face buttons.
+# Controller mapping. Buttons are numbers from 0 to 9;
+# Axes are values from 'axis_0' up to 'axis_5' (with quotes).
 a_button = 0
 b_button = 1
 x_button = 2
 y_button = 3
-
-# Shoulder buttons.
 left_bumper = 4
 right_bumper = 5
-trigger_axis = true # Set to "false" if triggers are identified as buttons.
-left_trigger = 2
-right_trigger = 5 # Does nothing. More info on README file.
+back = 6
+start = 7
+left_thumb = 8
+right_thumb = 9
 
-# Analog sticks.
-left_stick_x = 0
-left_stick_y = 1
-right_stick_x = 4
-right_stick_y = 3
+# Triggers are axes on an Xbox 360 controller, but might be buttons otherwise.
+# "right_trigger" is a special case on Windows; should be set to 'axis_5'
+# on Linux if using an Xbox 360 controller. Check README for more info.
+left_trigger = 'axis_2'
+right_trigger = 'axis_2_neg'
 
-# Invert stick axes. Can be set to "true" or "false".
-left_x_invert = false
-left_y_invert = false
-right_x_invert = false
-right_y_invert = false
+left_stick_x = 'axis_0'
+left_stick_y = 'axis_1'
+right_stick_x = 'axis_4'
+right_stick_y = 'axis_3'
+
+# Invert axes. Values can be set to true or false.
+axis_0_inv = false
+axis_1_inv = false
+axis_2_inv = false
+axis_3_inv = false
+axis_4_inv = false
+axis_5_inv = false
 """
 
 # Find which note to play.
 def msg(diastep, semitone):
     return mido.Message('note_on', channel=channel, note=(base_note + semitone
                         + 12 * octave + notes[play + diastep + mode]) % 128)
+
+# Get joystick event.
+def get_event(event):
+    if event == 'axis_0':
+        event = joystick.get_axis(0) * axis_0_inv > 0.5
+    elif event == 'axis_0_neg':
+        event = joystick.get_axis(0) * axis_0_inv < -0.5
+    elif event == 'axis_1':
+        event = joystick.get_axis(1) * axis_1_inv > 0.5
+    elif event == 'axis_1_neg':
+        event = joystick.get_axis(1) * axis_1_inv < - 0.5
+    elif event == 'axis_2':
+        event = joystick.get_axis(2) * axis_2_inv > 0.5
+    elif event == 'axis_2_neg':
+        event = joystick.get_axis(2) * axis_2_inv < -0.5
+    elif event == 'axis_3':
+        event = joystick.get_axis(3) * axis_3_inv > 0.5
+    elif event == 'axis_3_neg':
+        event = joystick.get_axis(3) * axis_3_inv < - 0.5
+    elif event == 'axis_4':
+        event = joystick.get_axis(4) * axis_4_inv > 0.5
+    elif event == 'axis_4_neg':
+        event = joystick.get_axis(4) * axis_4_inv < - 0.5
+    elif event == 'axis_5':
+        event = joystick.get_axis(5) * axis_5_inv > 0.5
+    elif event == 'axis_5_neg':
+        event = joystick.get_axis(5) * axis_5_inv < - 0.5
+    else:
+        event = joystick.get_button(event)
+    return event
 
 # Load configuration file if it exists. Otherwise generate default config file.
 if os.path.isfile(config_file):
@@ -99,23 +138,37 @@ mode = config['mode'] - 1
 channel = config['channel'] - 1
 base_note = config['base_note'] - notes[mode]
 port = config['port']
+
 a_button = controls['a_button']
 b_button = controls['b_button']
 x_button = controls['x_button']
 y_button = controls['y_button']
 l_bumper = controls['left_bumper']
 r_bumper = controls['right_bumper']
-trigger_axis = controls['trigger_axis']
+back = controls['back']
+start = controls['start']
+l_thumb = controls['left_thumb']
+r_thumb = controls['right_thumb']
+
 l_trigger = controls['left_trigger']
 r_trigger = controls['right_trigger']
-lstick_x = controls['left_stick_x']
-lstick_y = controls['left_stick_y']
-rstick_x = controls['right_stick_x']
-rstick_y = controls['right_stick_y']
-ls_x_inv = -1 if controls['left_x_invert'] else 1
-ls_y_inv = -1 if controls['left_y_invert'] else 1
-rs_x_inv = -1 if controls['right_x_invert'] else 1
-rs_y_inv = -1 if controls['right_y_invert'] else 1
+
+l_stick_up = controls['left_stick_y'] + '_neg'
+l_stick_down = controls['left_stick_y']
+l_stick_left = controls['left_stick_x'] + '_neg'
+l_stick_right = controls['left_stick_x']
+
+r_stick_up = controls['right_stick_y'] + '_neg'
+r_stick_down = controls['right_stick_y']
+r_stick_left = controls['right_stick_x'] + '_neg'
+r_stick_right = controls['right_stick_x']
+
+axis_0_inv = -1 if controls['axis_0_inv'] else 1
+axis_1_inv = -1 if controls['axis_1_inv'] else 1
+axis_2_inv = -1 if controls['axis_2_inv'] else 1
+axis_3_inv = -1 if controls['axis_3_inv'] else 1
+axis_4_inv = -1 if controls['axis_4_inv'] else 1
+axis_5_inv = -1 if controls['axis_5_inv'] else 1
 
 # Open output port.
 if port == '':
@@ -156,35 +209,29 @@ while done==False:
         # Detect button presses.
         if event.type == pygame.JOYBUTTONDOWN:
             # Assign joystick events.
-            root = joystick.get_button(a_button)\
-                or joystick.get_button(b_button)\
-                or joystick.get_button(x_button)
-            chord = joystick.get_button(b_button)\
-                 or joystick.get_button(x_button)
-            seventh = joystick.get_button(b_button)
-            set_mode = joystick.get_button(y_button)
-            chord_mode = joystick.get_axis(lstick_x) * ls_x_inv < -0.5
-            maj_chord = joystick.get_button(y_button)
-            min_chord = joystick.get_button(a_button)
-            dom_chord = joystick.get_button(b_button)
-            dim_chord = joystick.get_button(x_button)
+            root = get_event(a_button) or get_event(b_button)\
+                or get_event(x_button)
+            chord = get_event(b_button) or get_event(x_button)
+            seventh = get_event(b_button)
+            set_mode = get_event(y_button)
+            chord_mode = get_event(l_stick_right)
+            maj_chord = get_event(y_button)
+            min_chord = get_event(a_button)
+            dom_chord = get_event(b_button)
+            dim_chord = get_event(x_button)
 
             play = 0
             octave = 0
             # Define note to be played.
-            if trigger_axis:
-                if joystick.get_axis(l_trigger) > 0.8:
-                    play += 1
-            else:
-                if joystick.get_button(l_trigger):
-                    play += 1
-            if joystick.get_button(l_bumper):
+            if get_event(l_trigger):
+                play += 1
+            if get_event(l_bumper):
                 play += 2
-            if joystick.get_button(r_bumper):
+            if get_event(r_bumper):
                 play += 4
-            if joystick.get_axis(lstick_y) * ls_y_inv < -0.5:
+            if get_event(l_stick_up):
                 octave = 1
-            if joystick.get_axis(lstick_y) * ls_y_inv > 0.5:
+            if get_event(l_stick_down):
                 octave = -1
 
             if not chord_mode:
