@@ -58,7 +58,7 @@ right_thumb = 9
 # "right_trigger" is a special case on Windows; should be set to 'axis_5'
 # on Linux if using an Xbox 360 controller. Check README for more info.
 left_trigger = 'axis_2'
-right_trigger = 'axis_2_neg'
+right_trigger = 'axis_2'
 
 left_stick_x = 'axis_0'
 left_stick_y = 'axis_1'
@@ -152,6 +152,8 @@ r_thumb = controls['right_thumb']
 
 l_trigger = controls['left_trigger']
 r_trigger = controls['right_trigger']
+if r_trigger == l_trigger:
+    r_trigger += '_neg'
 
 l_stick_up = controls['left_stick_y'] + '_neg'
 l_stick_down = controls['left_stick_y']
