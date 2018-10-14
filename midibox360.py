@@ -2,17 +2,26 @@
 
 import os
 import sys
+import platform
 import toml
 import mido
 import mido.backends.pygame
 import pygame
 
-os.chdir(os.path.dirname(sys.argv[0]))
+if platform.system() == 'Windows':
+    env = 'localappdata'
+    config_path = ''
+else:
+    env = 'home'
+    config_path = '.config'
+
+config_dir = os.path.join(os.environ[env], config_path, 'midibox360')
+config_file = os.path.join(config_dir, 'config.toml')
 
 default_config = """
 # Choose which port midiBox360 outputs to. Must be inside quotation marks.
 # An empty string can be used to choose the system's default port.
-port = "midiBox360"
+port = ""
 
 # ID of joystick to be used.
 joystick = 0
@@ -62,12 +71,13 @@ def msg(diastep, semitone):
                         + 12 * octave + notes[play + diastep + mode]) % 128)
 
 # Load configuration file if it exists. Otherwise generate default config file.
-try:
-    config_file = open('config.toml', 'r')
+if os.path.isfile(config_file):
     config = toml.load(config_file)
-except FileNotFoundError:
+else:
     config = toml.loads(default_config)
-    with open('config.toml', 'w', encoding="utf-8") as f:
+    if not os.path.isdir(config_dir):
+        os.makedirs(config_dir)
+    with open(config_file, 'w', encoding="utf-8") as f:
         f.write(default_config.lstrip())
 
 # Init pygame and set it as mido's MIDI backend.
@@ -123,8 +133,10 @@ done = False
 
 # Main program loop.
 while done==False:
-    joystick = pygame.joystick.Joystick(joystick_id)
-    joystick.init()
+
+    if pygame.joystick.get_count():
+        joystick = pygame.joystick.Joystick(joystick_id)
+        joystick.init()
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
