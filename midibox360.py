@@ -9,10 +9,10 @@ import mido.backends.pygame
 import pygame
 
 if platform.system() == 'Windows':
-    env = 'localappdata'
+    env = 'LOCALAPPDATA'
     config_path = ''
 else:
-    env = 'home'
+    env = 'HOME'
     config_path = '.config'
 
 config_dir = os.path.join(os.environ[env], config_path, 'midibox360')
