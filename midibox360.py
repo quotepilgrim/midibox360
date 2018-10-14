@@ -42,7 +42,7 @@ base_note = 60
 
 [controls]
 # Controller mapping. Buttons are numbers from 0 to 9;
-# Axes are values from 'axis_0' up to 'axis_5' (with quotes).
+# Axes are values from "axis_0" up to "axis_5" (with quotes).
 a_button = 0
 b_button = 1
 x_button = 2
@@ -55,15 +55,15 @@ left_thumb = 8
 right_thumb = 9
 
 # Triggers are axes on an Xbox 360 controller, but might be buttons otherwise.
-# "right_trigger" is a special case on Windows; should be set to 'axis_5'
+# "right_trigger" is a special case on Windows; should be set to "axis_5"
 # on Linux if using an Xbox 360 controller. Check README for more info.
-left_trigger = 'axis_2'
-right_trigger = 'axis_2'
+left_trigger = "axis_2"
+right_trigger = "axis_2"
 
-left_stick_x = 'axis_0'
-left_stick_y = 'axis_1'
-right_stick_x = 'axis_4'
-right_stick_y = 'axis_3'
+left_stick_x = "axis_0"
+left_stick_y = "axis_1"
+right_stick_x = "axis_4"
+right_stick_y = "axis_3"
 
 # Invert axes. Values can be set to true or false.
 axis_0_inv = false
