@@ -199,14 +199,14 @@ while done==False:
 
         # Move base note up or down an octave/semitone.
         if event.type == pygame.JOYHATMOTION:
-                if joystick.get_hat(0) == (1,0):
-                    base_note = (base_note + 1) % 128
-                if joystick.get_hat(0) == (-1,0):
-                    base_note = (base_note - 1) % 128
-                if joystick.get_hat(0) == (0,1):
-                    base_note = (base_note + 12) % 128
-                if joystick.get_hat(0) == (0,-1):
-                    base_note = (base_note - 12) % 128
+            if joystick.get_hat(0) == (1,0):
+                base_note = (base_note + 1) % 128
+            if joystick.get_hat(0) == (-1,0):
+                base_note = (base_note - 1) % 128
+            if joystick.get_hat(0) == (0,1):
+                base_note = (base_note + 12) % 128
+            if joystick.get_hat(0) == (0,-1):
+                base_note = (base_note - 12) % 128
 
         # Detect button presses.
         if event.type == pygame.JOYBUTTONDOWN:
@@ -271,9 +271,9 @@ while done==False:
 
         if event.type == pygame.JOYBUTTONUP:
             # Release all notes.
-                for i in range(0, 127):
-                    outport.send(mido.Message('note_off',
-                                 channel=channel, note=i))
+            for i in range(0, 127):
+                outport.send(mido.Message('note_off',
+                         channel=channel, note=i))
 
     clock.tick(0)
 
