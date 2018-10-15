@@ -278,4 +278,3 @@ while done==False:
     clock.tick(0)
 
 pygame.quit()
-quit()
