@@ -16,8 +16,13 @@ else:
     env = 'HOME'
     config_path = '.config'
 
+root = os.path.dirname(os.path.realpath(__file__))
 config_dir = os.path.join(os.environ[env], config_path, 'midibox360')
 config_file = os.path.join(config_dir, 'config.toml')
+logo = os.path.join(root, 'res', 'logo.png')
+
+if not os.path.isfile(logo):
+    logo = os.path.join('usr', 'local', 'share', 'midibox360', 'logo.png')
 
 # Default config file contents.
 default_config = """
@@ -179,8 +184,17 @@ else:
     outport = mido.open_output(port)
 
 # Show program window.
-screen = pygame.display.set_mode([256, 128])
+screen = pygame.display.set_mode([320, 180])
 pygame.display.set_caption("midiBox360")
+
+if os.path.isfile(logo):
+    logo = pygame.image.load(logo)
+    screen.blit(logo, (0,0))
+    pygame.display.flip()
+
+if pygame.joystick.get_count():
+    joystick = pygame.joystick.Joystick(joystick_id)
+    joystick.init()
 
 clock = pygame.time.Clock()
 
@@ -188,10 +202,6 @@ done = False
 
 # Main program loop.
 while done==False:
-
-    if pygame.joystick.get_count():
-        joystick = pygame.joystick.Joystick(joystick_id)
-        joystick.init()
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -275,6 +285,6 @@ while done==False:
                 outport.send(mido.Message('note_off',
                          channel=channel, note=i))
 
-    clock.tick(0)
+    clock.tick(60)
 
 pygame.quit()
