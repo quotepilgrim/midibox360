@@ -1,5 +1,6 @@
 *.toml
 *.spec
+*.sh
 __pycache__
 dist
 build
