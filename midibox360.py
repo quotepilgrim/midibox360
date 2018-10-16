@@ -19,10 +19,13 @@ else:
 root = os.path.dirname(os.path.realpath(__file__))
 config_dir = os.path.join(os.environ[env], config_path, 'midibox360')
 config_file = os.path.join(config_dir, 'config.toml')
-logo = os.path.join(root, 'res', 'logo.png')
+logo_path = [os.path.join('usr', 'share', 'midibox360', 'logo.png'),
+        os.path.join('usr', 'local', 'share', 'midibox360', 'logo.png'),
+        os.path.join(root, 'res', 'logo.png')]
 
-if not os.path.isfile(logo):
-    logo = os.path.join('usr', 'local', 'share', 'midibox360', 'logo.png')
+for f in logo_path:
+    if os.path.isfile(f):
+        logo = f
 
 # Default config file contents.
 default_config = """
