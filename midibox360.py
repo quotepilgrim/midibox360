@@ -139,6 +139,7 @@ notes = [0,2,4,5,7,9,11,12,14,16,17,19,21,23,24,26,28,29,31,33,35,
          72,74,76,77,79,81,83,84,86,88,89,91,93,95,96,98,100,101,103,105,107,
          108,110,112,113,115,117,119,120,122,124,125,127]
 octave = 0
+playing = 0
 
 # Load values from config file.
 controls = config['controls']
@@ -250,41 +251,44 @@ while done==False:
             if get_event(l_stick_down):
                 octave = -1
 
-            if not chord_mode:
-                # Play diationic chords.
-                if root:
-                    outport.send(msg(0, 0))
-                if chord:
-                    outport.send(msg(2, 0))
-                    outport.send(msg(4, 0))
-                if seventh:
-                    outport.send(msg(6, 0))
-                if set_mode:
-                    mode = play % 7
-                    base_note = config['base_note'] - notes[mode]
-            else:
-                # Play specific chord quality.
-                if maj_chord:
-                    outport.send(msg(0,0))
-                    outport.send(msg(0,4))
-                    outport.send(msg(0,7))
-                elif min_chord:
-                    outport.send(msg(0,0))
-                    outport.send(msg(0,3))
-                    outport.send(msg(0,7))
-                elif dom_chord:
-                    outport.send(msg(0,0))
-                    outport.send(msg(0,4))
-                    outport.send(msg(0,7))
-                    outport.send(msg(0,10))
-                elif dim_chord:
-                    outport.send(msg(0,0))
-                    outport.send(msg(0,3))
-                    outport.send(msg(0,6))
-                    outport.send(msg(0,9))
+            if not playing and root:
+                if not chord_mode:
+                    # Play diationic chords.
+                    if root:
+                        outport.send(msg(0, 0))
+                    if chord:
+                        outport.send(msg(2, 0))
+                        outport.send(msg(4, 0))
+                    if seventh:
+                        outport.send(msg(6, 0))
+                    if set_mode:
+                        mode = play % 7
+                        base_note = config['base_note'] - notes[mode]
+                else:
+                    # Play specific chord quality.
+                    if maj_chord:
+                        outport.send(msg(0,0))
+                        outport.send(msg(0,4))
+                        outport.send(msg(0,7))
+                    elif min_chord:
+                        outport.send(msg(0,0))
+                        outport.send(msg(0,3))
+                        outport.send(msg(0,7))
+                    elif dom_chord:
+                        outport.send(msg(0,0))
+                        outport.send(msg(0,4))
+                        outport.send(msg(0,7))
+                        outport.send(msg(0,10))
+                    elif dim_chord:
+                        outport.send(msg(0,0))
+                        outport.send(msg(0,3))
+                        outport.send(msg(0,6))
+                        outport.send(msg(0,9))
+                playing = True
 
         if event.type == pygame.JOYBUTTONUP:
             # Release all notes.
+            playing = False
             for i in range(0, 127):
                 outport.send(mido.Message('note_off',
                          channel=channel, note=i))
