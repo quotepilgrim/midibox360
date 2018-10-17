@@ -39,9 +39,6 @@ to use with any DAW on Windows, you will need to install a virtual MIDI cable
 [loopMIDI](https://www.tobias-erichsen.de/software/loopmidi.html)) and type the
 name of the appropriate port in the `port` setting (i.e. "loopMIDI Port").
 
-midiBox360 doesn't have a proper GUI as of yet. It just opens a small empty
-window for the sake of making it possible to close it.
-
 ### Using the Xbox 360 Controller
 
 midiBox360 will play a note when you press the A face button on the Xbox360
