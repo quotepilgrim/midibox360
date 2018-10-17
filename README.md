@@ -6,15 +6,17 @@ hasn't been tested.
 
 ## Getting Started
 
-To get midiBox360, clone this repository or simply download the
-midiBox360.py file.
+You can get the latest midiBox360 release on the
+[Releases](https://github.com/quotepilgrim/midibox360/releases) page. The binary
+release of midiBox360 works out-of-the-box on Windows, with no need to install
+anything. Linux users will have to run it from source.
 
 ### Prerequisites
 
-In order to run midiBox360, you will need to install the latest version of
-Python, and the modules `toml`, `mido`, and `pygame`. Make sure to add Python to
-your PATH enviroment variable when you install it. You can install the required
-modules by running the following commands:
+In order to run midiBox360 from source, you will need to install the latest
+version of Python 3 and the modules `toml`, `mido`, and `pygame`. Make sure to
+add Python is in your PATH environment variable once installed. You can install
+the required modules by running the following commands as root/administrator:
 
 ```
 $ pip install toml
@@ -22,18 +24,14 @@ $ pip install mido
 $ pip install pygame
 ```
 
-On Windows, you may need to run `cmd` with Administrator privileges before
-running these commands.
-
-### Installing
-
-There is no installer for midiBox360 as of now. It needs to be run from source.
+Once you have all the modules installed, you can launch the `midibox360.py`
+script.
 
 ## Configuring midiBox360
 
 When you first run midiBox360, it will generate a configuration file
 `config.toml` in "%LOCALAPPDATA%/midiBox360" on Windows and
-"~/.condig/midiBox360" on Linux, which you can edit with your preferred text
+"~/.config/midiBox360" on Linux, which you can edit with your preferred text
 editor. The file contains information on what each setting does; you don't need
 to change most of them, but it's important to note that if you want to be able
 to use with any DAW on Windows, you will need to install a virtual MIDI cable
