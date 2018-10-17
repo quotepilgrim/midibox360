@@ -91,7 +91,7 @@ Xbox 360 controller in mind, so it may not work properly with other controllers.
 
 \*The "test" tab on the "controller properties" window on Windows counts
 starting from 1, while Python counts starting from 0, so you have to subtract 1
-from the ID of the button you want to map when putting it into the config file.
+from the ID of the button you want to map when editing the config file.
 
 ## Notes
 
