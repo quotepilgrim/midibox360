@@ -227,7 +227,7 @@ while done==False:
         if event.type == pygame.JOYBUTTONDOWN:
             # Assign joystick events.
             root = get_event(a_button) or get_event(b_button)\
-                or get_event(x_button)
+                or get_event(x_button) or get_event(y_button)
             chord = get_event(b_button) or get_event(x_button)
             seventh = get_event(b_button)
             set_mode = get_event(y_button)
@@ -254,16 +254,16 @@ while done==False:
             if not playing and root:
                 if not chord_mode:
                     # Play diationic chords.
-                    if root:
-                        outport.send(msg(0, 0))
-                    if chord:
-                        outport.send(msg(2, 0))
-                        outport.send(msg(4, 0))
-                    if seventh:
-                        outport.send(msg(6, 0))
                     if set_mode:
                         mode = play % 7
                         base_note = config['base_note'] - notes[mode]
+                    else:
+                        outport.send(msg(0, 0))
+                        if chord:
+                            outport.send(msg(2, 0))
+                            outport.send(msg(4, 0))
+                        if seventh:
+                            outport.send(msg(6, 0))
                 else:
                     # Play specific chord quality.
                     if maj_chord:
