@@ -192,7 +192,8 @@ screen = pygame.display.set_mode([320, 180])
 pygame.display.set_caption("midiBox360")
 
 if os.path.isfile(logo):
-    screen.blit(pygame.image.load(logo), (0,0))
+    logo = pygame.image.load(logo)
+    screen.blit(logo, (0,0))
     pygame.display.flip()
 
 if pygame.joystick.get_count():
