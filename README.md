@@ -63,7 +63,7 @@ play a 7th chord.
 Holding up or down on the left stick will play notes one octave higher or lower,
 respectively.
 
-Pressing up and down on the D-pad moves the base none one octave up and down,
+Pressing up and down on the D-pad moves the base note one octave up and down,
 and pressing right and left moves the base note one semitone up or down,
 respectively.
 
