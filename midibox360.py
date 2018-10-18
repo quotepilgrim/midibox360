@@ -75,10 +75,10 @@ left_stick_y = "axis_1"
 right_stick_x = "axis_4"
 right_stick_y = "axis_3"
 
-dpad_up = 'up'
-dpad_down = 'down'
-dpad_left = 'left'
-dpad_right = 'right'
+dpad_up = "up"
+dpad_down = "down"
+dpad_left = "left"
+dpad_right = "right"
 
 # Invert axes. Values can be set to true or false.
 axis_0_inv = false
