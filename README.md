@@ -34,7 +34,7 @@ When you first run midiBox360, it will generate a configuration file
 "~/.config/midiBox360" on Linux, which you can edit with your preferred text
 editor. The file contains information on what each setting does; you don't need
 to change most of them, but it's important to note that if you want to be able
-to use with any DAW on Windows, you will need to install a virtual MIDI cable
+to use it with any DAW on Windows, you will need to install a virtual MIDI cable
 (I personally recommend
 [loopMIDI](https://www.tobias-erichsen.de/software/loopmidi.html)) and type the
 name of the appropriate port in the `port` setting (i.e. "loopMIDI Port").
