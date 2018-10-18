@@ -282,32 +282,32 @@ while done==False:
                         mode = play % 7
                         base_note = config['base_note'] - notes[mode]
                     else:
-                        outport.send(msg(0, 0))
+                        outport.send(msg(0, semitone))
                         if chord:
-                            outport.send(msg(2, 0))
-                            outport.send(msg(4, 0))
+                            outport.send(msg(2, semitone))
+                            outport.send(msg(4, semitone))
                         if seventh:
-                            outport.send(msg(6, 0))
+                            outport.send(msg(6, semitone))
                 else:
                     # Play specific chord quality.
                     if maj_chord:
-                        outport.send(msg(0,0))
-                        outport.send(msg(0,4))
-                        outport.send(msg(0,7))
+                        outport.send(msg(0,0 + semitone))
+                        outport.send(msg(0,4 + semitone))
+                        outport.send(msg(0,7 + semitone))
                     elif min_chord:
-                        outport.send(msg(0,0))
-                        outport.send(msg(0,3))
-                        outport.send(msg(0,7))
+                        outport.send(msg(0,0 + semitone))
+                        outport.send(msg(0,3 + semitone))
+                        outport.send(msg(0,7 + semitone))
                     elif dom_chord:
-                        outport.send(msg(0,0))
-                        outport.send(msg(0,4))
-                        outport.send(msg(0,7))
-                        outport.send(msg(0,10))
+                        outport.send(msg(0,0 + semitone))
+                        outport.send(msg(0,4 + semitone))
+                        outport.send(msg(0,7 + semitone))
+                        outport.send(msg(0,10 + semitone))
                     elif dim_chord:
-                        outport.send(msg(0,0))
-                        outport.send(msg(0,3))
-                        outport.send(msg(0,6))
-                        outport.send(msg(0,9))
+                        outport.send(msg(0,0 + semitone))
+                        outport.send(msg(0,3 + semitone))
+                        outport.send(msg(0,6 + semitone))
+                        outport.send(msg(0,9 + semitone))
                 playing = True
 
         if event.type == pygame.JOYBUTTONUP:
