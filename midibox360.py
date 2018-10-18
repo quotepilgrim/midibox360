@@ -71,8 +71,14 @@ right_trigger = "axis_2"
 
 left_stick_x = "axis_0"
 left_stick_y = "axis_1"
+
 right_stick_x = "axis_4"
 right_stick_y = "axis_3"
+
+dpad_up = 'up'
+dpad_down = 'down'
+dpad_left = 'left'
+dpad_right = 'right'
 
 # Invert axes. Values can be set to true or false.
 axis_0_inv = false
@@ -114,6 +120,14 @@ def get_event(event):
         event = joystick.get_axis(5) * axis_5_inv > 0.5
     elif event == 'axis_5_neg':
         event = joystick.get_axis(5) * axis_5_inv < - 0.5
+    elif event == 'up':
+        event = joystick.get_hat(0) == (0,1)
+    elif event == 'down':
+        event = joystick.get_hat(0) == (0,-1)
+    elif event == 'left':
+        event = joystick.get_hat(0) == (-1,0)
+    elif event == 'right':
+        event = joystick.get_hat(0) == (1,0)
     else:
         event = joystick.get_button(event)
     return event
@@ -175,6 +189,11 @@ r_stick_down = controls['right_stick_y']
 r_stick_left = controls['right_stick_x'] + '_neg'
 r_stick_right = controls['right_stick_x']
 
+hat_up = controls['dpad_up']
+hat_down = controls['dpad_down']
+hat_left = controls['dpad_left']
+hat_right = controls['dpad_right']
+
 axis_0_inv = -1 if controls['axis_0_inv'] else 1
 axis_1_inv = -1 if controls['axis_1_inv'] else 1
 axis_2_inv = -1 if controls['axis_2_inv'] else 1
@@ -214,14 +233,14 @@ while done==False:
 
         # Move base note up or down an octave/semitone.
         if event.type == pygame.JOYHATMOTION:
-            if joystick.get_hat(0) == (1,0):
-                base_note = (base_note + 1) % 128
-            if joystick.get_hat(0) == (-1,0):
-                base_note = (base_note - 1) % 128
-            if joystick.get_hat(0) == (0,1):
+            if get_event(hat_up):
                 base_note = (base_note + 12) % 128
-            if joystick.get_hat(0) == (0,-1):
+            if get_event(hat_down):
                 base_note = (base_note - 12) % 128
+            if get_event(hat_left):
+                base_note = (base_note - 1) % 128
+            if get_event(hat_right):
+                base_note = (base_note + 1) % 128
 
         # Detect button presses.
         if event.type == pygame.JOYBUTTONDOWN:

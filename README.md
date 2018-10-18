@@ -60,11 +60,11 @@ LT + LB + RB = 8 (1 + one octave)
 Pressing the X face button will play a chord instead of a single note. B will
 play a 7th chord.
 
-Holding left or right on the left stick will play notes one octave lower or
-higher, respectively.
+Holding up or down on the left stick will play notes one octave higher or lower,
+respectively.
 
-Pressing up and down on the D-pad moves the base octave up and down, and
-pressing right and left moves the base note one semitone up or down,
+Pressing up and down on the D-pad moves the base none one octave up and down,
+and pressing right and left moves the base note one semitone up or down,
 respectively.
 
 Pressing the Y face button will change the current mode you're playing in into
