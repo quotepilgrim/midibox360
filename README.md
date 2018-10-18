@@ -61,7 +61,8 @@ Pressing the X face button will play a chord instead of a single note. B will
 play a 7th chord.
 
 Holding up or down on the left stick will play notes one octave higher or lower,
-respectively.
+and holding right or left will play notes one semitone up or down. Pressing the
+left stick down makes each face button play a different chord quality.
 
 Pressing up and down on the D-pad moves the base note one octave up and down,
 and pressing right and left moves the base note one semitone up or down,

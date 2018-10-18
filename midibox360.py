@@ -250,7 +250,7 @@ while done==False:
             chord = get_event(b_button) or get_event(x_button)
             seventh = get_event(b_button)
             set_mode = get_event(y_button)
-            chord_mode = get_event(l_stick_right)
+            chord_mode = get_event(l_thumb)
             maj_chord = get_event(y_button)
             min_chord = get_event(a_button)
             dom_chord = get_event(b_button)
@@ -258,6 +258,7 @@ while done==False:
 
             play = 0
             octave = 0
+            semitone = 0
             # Define note to be played.
             if get_event(l_trigger):
                 play += 1
@@ -269,6 +270,10 @@ while done==False:
                 octave = 1
             if get_event(l_stick_down):
                 octave = -1
+            if get_event(l_stick_left):
+                semitone = -1
+            if get_event(l_stick_right):
+                semitone = 1
 
             if not playing and root:
                 if not chord_mode:
