@@ -10,21 +10,20 @@ import pygame
 
 # Determine config file location.
 if platform.system() == 'Windows':
-    env = 'LOCALAPPDATA'
-    config_path = ''
+    config_dir = os.environ['LOCALAPPDATA']
 else:
-    env = 'HOME'
-    config_path = '.config'
+    config_dir = os.path.join(os.environ['HOME'], '.config')
 
 root = os.path.dirname(os.path.realpath(__file__))
-config_dir = os.path.join(os.environ[env], config_path, 'midibox360')
+config_dir = os.path.join(config_dir, 'midibox360')
 config_file = os.path.join(config_dir, 'config.toml')
-logo_path = ['/usr/share/midibox360/logo.png',
-             '/usr/local/share/midibox360/logo.png',
-             os.path.join(root, 'res', 'logo.png')]
+logo_path = ['/usr/share/midibox360/images',
+             '/usr/local/share/midibox360/images',
+             os.path.join(root, 'res')]
 logo = 'logo.png'
 
 for f in logo_path:
+    f = os.path.join(f, logo)
     if os.path.isfile(f):
         logo = f
 
