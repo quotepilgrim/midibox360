@@ -90,8 +90,10 @@ axis_5_inv = false
 
 # Find which note to play.
 def msg(diastep, semitone):
-    return mido.Message('note_on', channel=channel, note=(base_note + semitone
-                        + 12 * octave + notes[play + diastep + mode]) % 128)
+    note = (base_note + semitone + 12 * octave
+            + notes[play + diastep + mode]) % 128
+    playing_notes.append(note)
+    return mido.Message('note_on', channel=channel, note=note)
 
 # Get joystick event.
 def get_event(event):
@@ -151,6 +153,7 @@ notes = [0,2,4,5,7,9,11,12,14,16,17,19,21,23,24,26,28,29,31,33,35,
          36,38,40,41,43,45,47,48,50,52,53,55,57,59,60,62,64,65,67,69,71,
          72,74,76,77,79,81,83,84,86,88,89,91,93,95,96,98,100,101,103,105,107,
          108,110,112,113,115,117,119,120,122,124,125,127]
+playing_notes = []
 octave = 0
 playing = 0
 
@@ -312,9 +315,9 @@ while done==False:
         if event.type == pygame.JOYBUTTONUP:
             # Release all notes.
             playing = False
-            for i in range(0, 127):
+            while len(playing_notes) > 0:
                 outport.send(mido.Message('note_off',
-                            channel=channel, note=i))
+                            channel=channel, note=playing_notes.pop()))
 
     clock.tick(30)
 
