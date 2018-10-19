@@ -17,16 +17,10 @@ else:
 root = os.path.dirname(os.path.realpath(__file__))
 config_dir = os.path.join(config_dir, 'midibox360')
 config_file = os.path.join(config_dir, 'config.toml')
-<<<<<<< HEAD
-logo_path = ['/usr/local/share/midibox360/images/logo.png',
-             '/usr/share/midibox360/images/logo.png']
-logo = os.path.join(root, 'res', 'logo.png')
-=======
 logo_path = ['/usr/share/midibox360/images',
              '/usr/local/share/midibox360/images',
              os.path.join(root, 'res')]
 logo = 'logo.png'
->>>>>>> 3b0f2398468839d771be276d2db7b3f77926ce62
 
 for f in logo_path:
     f = os.path.join(f, logo)
