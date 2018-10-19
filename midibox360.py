@@ -314,7 +314,7 @@ while done==False:
             playing = False
             outport.reset()
 
-    clock.tick(60)
+    clock.tick(30)
 
 outport.close()
 pygame.quit()
