@@ -10,20 +10,26 @@ import pygame
 
 # Determine config file location.
 if platform.system() == 'Windows':
-    env = 'LOCALAPPDATA'
-    config_path = ''
+    config_dir = os.environ['LOCALAPPDATA']
 else:
-    env = 'HOME'
-    config_path = '.config'
+    config_dir = os.path.join(os.environ['HOME'], '.config')
 
 root = os.path.dirname(os.path.realpath(__file__))
-config_dir = os.path.join(os.environ[env], config_path, 'midibox360')
+config_dir = os.path.join(config_dir, 'midibox360')
 config_file = os.path.join(config_dir, 'config.toml')
+<<<<<<< HEAD
 logo_path = ['/usr/local/share/midibox360/images/logo.png',
              '/usr/share/midibox360/images/logo.png']
 logo = os.path.join(root, 'res', 'logo.png')
+=======
+logo_path = ['/usr/share/midibox360/images',
+             '/usr/local/share/midibox360/images',
+             os.path.join(root, 'res')]
+logo = 'logo.png'
+>>>>>>> 3b0f2398468839d771be276d2db7b3f77926ce62
 
 for f in logo_path:
+    f = os.path.join(f, logo)
     if os.path.isfile(f):
         logo = f
 
@@ -249,7 +255,7 @@ while done==False:
             chord = get_event(b_button) or get_event(x_button)
             seventh = get_event(b_button)
             set_mode = get_event(y_button)
-            chord_mode = get_event(l_stick_right)
+            chord_mode = get_event(l_thumb)
             maj_chord = get_event(y_button)
             min_chord = get_event(a_button)
             dom_chord = get_event(b_button)
@@ -257,6 +263,7 @@ while done==False:
 
             play = 0
             octave = 0
+            semitone = 0
             # Define note to be played.
             if get_event(l_trigger):
                 play += 1
@@ -268,6 +275,10 @@ while done==False:
                 octave = 1
             if get_event(l_stick_down):
                 octave = -1
+            if get_event(l_stick_left):
+                semitone = -1
+            if get_event(l_stick_right):
+                semitone = 1
 
             if not playing and root:
                 if not chord_mode:
@@ -276,41 +287,40 @@ while done==False:
                         mode = play % 7
                         base_note = config['base_note'] - notes[mode]
                     else:
-                        outport.send(msg(0, 0))
+                        outport.send(msg(0, semitone))
                         if chord:
-                            outport.send(msg(2, 0))
-                            outport.send(msg(4, 0))
+                            outport.send(msg(2, semitone))
+                            outport.send(msg(4, semitone))
                         if seventh:
-                            outport.send(msg(6, 0))
+                            outport.send(msg(6, semitone))
                 else:
                     # Play specific chord quality.
                     if maj_chord:
-                        outport.send(msg(0,0))
-                        outport.send(msg(0,4))
-                        outport.send(msg(0,7))
+                        outport.send(msg(0,0 + semitone))
+                        outport.send(msg(0,4 + semitone))
+                        outport.send(msg(0,7 + semitone))
                     elif min_chord:
-                        outport.send(msg(0,0))
-                        outport.send(msg(0,3))
-                        outport.send(msg(0,7))
+                        outport.send(msg(0,0 + semitone))
+                        outport.send(msg(0,3 + semitone))
+                        outport.send(msg(0,7 + semitone))
                     elif dom_chord:
-                        outport.send(msg(0,0))
-                        outport.send(msg(0,4))
-                        outport.send(msg(0,7))
-                        outport.send(msg(0,10))
+                        outport.send(msg(0,0 + semitone))
+                        outport.send(msg(0,4 + semitone))
+                        outport.send(msg(0,7 + semitone))
+                        outport.send(msg(0,10 + semitone))
                     elif dim_chord:
-                        outport.send(msg(0,0))
-                        outport.send(msg(0,3))
-                        outport.send(msg(0,6))
-                        outport.send(msg(0,9))
+                        outport.send(msg(0,0 + semitone))
+                        outport.send(msg(0,3 + semitone))
+                        outport.send(msg(0,6 + semitone))
+                        outport.send(msg(0,9 + semitone))
                 playing = True
 
         if event.type == pygame.JOYBUTTONUP:
             # Release all notes.
             playing = False
-            for i in range(0, 127):
-                outport.send(mido.Message('note_off',
-                         channel=channel, note=i))
+            outport.reset()
 
     clock.tick(60)
 
+outport.close()
 pygame.quit()
