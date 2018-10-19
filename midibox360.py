@@ -318,4 +318,5 @@ while done==False:
 
     clock.tick(60)
 
+outport.close()
 pygame.quit()
