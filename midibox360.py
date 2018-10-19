@@ -312,7 +312,9 @@ while done==False:
         if event.type == pygame.JOYBUTTONUP:
             # Release all notes.
             playing = False
-            outport.reset()
+            for i in range(0, 127):
+                outport.send(mido.Message('note_off',
+                            channel=channel, note=i))
 
     clock.tick(30)
 
