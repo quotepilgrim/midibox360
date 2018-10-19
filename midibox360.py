@@ -19,10 +19,9 @@ else:
 root = os.path.dirname(os.path.realpath(__file__))
 config_dir = os.path.join(os.environ[env], config_path, 'midibox360')
 config_file = os.path.join(config_dir, 'config.toml')
-logo_path = ['/usr/share/midibox360/logo.png',
-             '/usr/local/share/midibox360/logo.png',
-             os.path.join(root, 'res', 'logo.png')]
-logo = 'logo.png'
+logo_path = ['/usr/local/share/midibox360/images/logo.png',
+             '/usr/share/midibox360/images/logo.png']
+logo = os.path.join(root, 'res', 'logo.png')
 
 for f in logo_path:
     if os.path.isfile(f):
