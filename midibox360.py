@@ -147,6 +147,7 @@ else:
 pygame.init()
 pygame.joystick.init()
 mido.set_backend('mido.backends.pygame')
+print(mido.get_output_names())
 
 # List of all numbers from 0 to 127 in a diatonic scale pattern.
 notes = [0,2,4,5,7,9,11,12,14,16,17,19,21,23,24,26,28,29,31,33,35,
