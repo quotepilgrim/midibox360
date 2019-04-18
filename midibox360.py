@@ -269,6 +269,8 @@ while done==False:
                 play += 2
             if get_event(r_bumper):
                 play += 4
+            if get_event(r_trigger):
+                play += 8
             if get_event(l_stick_up):
                 octave = 1
             if get_event(l_stick_down):
