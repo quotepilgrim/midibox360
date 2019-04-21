@@ -254,12 +254,13 @@ while done==False:
                 or get_event(x_button) or get_event(y_button)
             chord = get_event(b_button) or get_event(x_button)
             seventh = get_event(b_button)
-            set_mode = get_event(y_button)
+            set_mode = get_event(start)
             maj_chord = get_event(y_button)
             min_chord = get_event(a_button)
             dom_chord = get_event(b_button)
             dim_chord = get_event(x_button)
 
+            # Set chord mode.
             if get_event(back):
                 if not chord_toggle:
                     chord_mode = not chord_mode
@@ -288,19 +289,20 @@ while done==False:
             if get_event(l_stick_right):
                 semitone = 1
 
+            # Set scale mode.
+            if set_mode:
+                mode = play % 7
+                base_note = config['base_note'] - notes[mode]
+
             if not playing and root:
                 if not chord_mode:
                     # Play diationic chords.
-                    if set_mode:
-                        mode = play % 7
-                        base_note = config['base_note'] - notes[mode]
-                    else:
-                        outport.send(msg(0, semitone))
-                        if chord:
-                            outport.send(msg(2, semitone))
-                            outport.send(msg(4, semitone))
-                        if seventh:
-                            outport.send(msg(6, semitone))
+                    outport.send(msg(0, semitone))
+                    if chord:
+                        outport.send(msg(2, semitone))
+                        outport.send(msg(4, semitone))
+                    if seventh:
+                        outport.send(msg(6, semitone))
                 else:
                     # Play specific chord quality.
                     if maj_chord:
