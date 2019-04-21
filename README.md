@@ -80,8 +80,9 @@ buttons/triggers being held down).
 to a limitation in `pygame`. It does work properly on Linux, and it may work
 on Windows with some non-Xbox controllers. You can work around this issue by
 remapping RT to something else in midiBox360's configuration, or mapping your
-controller to a [vJoy](http://vjoystick.sourceforge.net/site/) virtual
-joystick and a tool like [FreePIE](https://andersmalmgren.github.io/FreePIE/).
+controller to a [vJoy](http://vjoystick.sourceforge.net/site/)
+virtual joystick with the help of a tool like
+[FreePIE](https://andersmalmgren.github.io/FreePIE/).
 Instructions on how to do that will be linked to here soon.
 
 ### Using Other Controllers
