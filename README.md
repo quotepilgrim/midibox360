@@ -42,9 +42,10 @@ name of the appropriate port in the `port` setting (i.e. "loopMIDI Port").
 ### Using the Xbox 360 Controller
 
 midiBox360 will play a note when you press the A face button on the Xbox360
-controller. You can play different notes by holding different combinations of
-the left trigger (LT) and the shoulder buttons (LB and RB). Each combination
-corresponds to a scale degree, as follows:
+controller. Which note is played is determined by the combination of shoulder
+buttons/triggers being held. Left trigger (LT), left bumper (LB), right bumper
+(RB) and right trigger (RT) add 1, 2, 4, and 8 to the note number, respectively.
+Here is list of the combinations using LT, LB, and RB.
 
 ```
         None = 1
@@ -57,6 +58,9 @@ corresponds to a scale degree, as follows:
 LT + LB + RB = 8 (1 + one octave)
 ```
 
+Holding RT with these combinations will yield the remaining note numbers up
+to 16.
+
 Pressing the X face button will play a chord instead of a single note. B will
 play a 7th chord.
 
@@ -68,27 +72,25 @@ Pressing up and down on the D-pad moves the base note one octave up and down,
 and pressing right and left moves the base note one semitone up or down,
 respectively.
 
-Pressing the Y face button will change the current mode you're playing in into
-the mode corresponding to the scale degree equivalent to the combination of LT,
-LB and RB being held down.
+Pressing start will change the scale mode to the one corresponding to the
+scale degree of the current note (determined by the combination of shoulder
+buttons/triggers being held down).
 
-**NOTE:** Since `pygame` uses DirectInput on Windows, both triggers are assigned
-the same axis, which makes it impossible to detect if both are being pressed at
-the same time (pressing both gives the same output as pressing none). As a
-result, I decided not to assign any function to the right trigger as of now.
-
-Due to this limitation, if I decide to give the right trigger a function in the
-future, it will have to be something that doesn't require it to be pressed at
-the same time as the left one so as to keep functionality the same on all
-platforms.
+**NOTE:** Combinations with both LT and RT held down won't work on Windows due
+to a limitation in `pygame`. It does work properly on Linux, and it may work
+on Windows on with some non-Xbox controllers. You can work around this issue by
+remapping RT to something else in midiBox360's configuration, or mapping your
+controller to a [vJoy](http://vjoystick.sourceforge.net/site/) virtual
+joystick and a tool like [FreePIE](https://andersmalmgren.github.io/FreePIE/).
+Instructions on how to do that will be linked to here soon.
 
 ### Using Other Controllers
 
-The configuration file allows full remapping of the controller, so in theory you
-can use any controller you want with midiBox360, not just an Xbox 360 one, as
-long as you can find out which value correspond to each button/axis on your
-controller*. Bear in mind midiBox360, as the name implies, was made with the
-Xbox 360 controller in mind, so it may not work properly with other controllers.
+The configuration file allows full remapping of the controller, so you should be
+able to use any controller you want with midiBox360 as long as you can find out
+which value correspond to each button/axis on your controller*. Bear in mind,
+however, that midiBox360 was made with the Xbox 360 controller in mind, so this
+may no always work.
 
 \*The "test" tab on the "controller properties" window on Windows counts
 starting from 1, while Python counts starting from 0, so you have to subtract 1
