@@ -65,16 +65,19 @@ Pressing the X face button will play a chord instead of a single note. B will
 play a 7th chord.
 
 Holding up or down on the left stick will play notes one octave higher or lower,
-and holding right or left will play notes one semitone up or down. Pressing the
-left stick down makes each face button play a different chord quality.
+and holding right or left will play notes one semitone up or down.
 
 Pressing up and down on the D-pad moves the base note one octave up and down,
 and pressing right and left moves the base note one semitone up or down,
 respectively.
 
-Pressing start will change the scale mode to the one corresponding to the
-scale degree of the current note (determined by the combination of shoulder
-buttons/triggers being held down). This will also reset the base note.
+Pressing the back button (left stick on Linux) toggles a mode where each face
+button plays a different chord quality.
+
+Pressing start (right stick on Linux) will change the scale mode to the one
+corresponding to the scale degree of the current note (determined by the
+combination of shoulder buttons/triggers being held down).
+This will also reset the base note.
 
 **NOTE:** Combinations with both LT and RT held down won't work on Windows due
 to a limitation in `pygame`. It does work properly on Linux, and it may work
