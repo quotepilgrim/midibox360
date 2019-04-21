@@ -157,6 +157,8 @@ notes = [0,2,4,5,7,9,11,12,14,16,17,19,21,23,24,26,28,29,31,33,35,
 playing_notes = []
 octave = 0
 playing = 0
+chord_mode = False
+chord_toggle = False
 
 # Load values from config file.
 controls = config['controls']
@@ -253,11 +255,17 @@ while done==False:
             chord = get_event(b_button) or get_event(x_button)
             seventh = get_event(b_button)
             set_mode = get_event(y_button)
-            chord_mode = get_event(l_thumb)
             maj_chord = get_event(y_button)
             min_chord = get_event(a_button)
             dom_chord = get_event(b_button)
             dim_chord = get_event(x_button)
+
+            if get_event(back):
+                if not chord_toggle:
+                    chord_mode = not chord_mode
+                chord_toggle = True
+            else:
+                chord_toggle = False
 
             play = 0
             octave = 0
