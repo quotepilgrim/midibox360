@@ -74,7 +74,7 @@ respectively.
 
 Pressing start will change the scale mode to the one corresponding to the
 scale degree of the current note (determined by the combination of shoulder
-buttons/triggers being held down).
+buttons/triggers being held down). This will also reset the base note.
 
 **NOTE:** Combinations with both LT and RT held down won't work on Windows due
 to a limitation in `pygame`. It does work properly on Linux, and it may work
