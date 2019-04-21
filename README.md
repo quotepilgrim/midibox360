@@ -78,7 +78,7 @@ buttons/triggers being held down).
 
 **NOTE:** Combinations with both LT and RT held down won't work on Windows due
 to a limitation in `pygame`. It does work properly on Linux, and it may work
-on Windows on with some non-Xbox controllers. You can work around this issue by
+on Windows with some non-Xbox controllers. You can work around this issue by
 remapping RT to something else in midiBox360's configuration, or mapping your
 controller to a [vJoy](http://vjoystick.sourceforge.net/site/) virtual
 joystick and a tool like [FreePIE](https://andersmalmgren.github.io/FreePIE/).
