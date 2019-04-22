@@ -4,7 +4,7 @@ midiBox360 turns an Xbox 360 controller into a MIDI controller that can be used
 on any DAW. It works on Linux and Windows. It may run on other platforms, but it
 hasn't been tested.
 
-## Getting Started
+## Getting started
 
 You can get the latest midiBox360 release on the
 [Releases](https://github.com/quotepilgrim/midibox360/releases) page. The binary
@@ -14,9 +14,9 @@ anything. Linux users will have to run it from source.
 ### Prerequisites
 
 In order to run midiBox360 from source, you will need to install the latest
-version of Python 3 and the modules `toml`, `mido`, and `pygame`. Make sure to
-add Python is in your PATH environment variable once installed. You can install
-the required modules by running the following commands as root/administrator:
+version of Python 3 and the modules `toml`, `mido`, and `pygame`. Make sure
+Python is in your PATH environment variable once installed. You can install the
+required modules by running the following commands as root/administrator:
 
 ```
 $ pip install toml
@@ -38,13 +38,13 @@ to use it with any DAW on Windows, you will need to install a virtual MIDI cable
 (I personally recommend [loopMIDI][1]) and type the name of the appropriate port
 in the `port` setting (i.e. "loopMIDI Port").
 
-### Using the Xbox 360 Controller
+### Using the Xbox 360 controller
 
-midiBox360 will play a note when you press the A face button on the Xbox360
+midiBox360 will play a note when you press the A face button on the Xbox 360
 controller. Which note is played is determined by the combination of shoulder
 buttons/triggers being held. Left trigger (LT), left bumper (LB), right bumper
 (RB) and right trigger (RT) add 1, 2, 4, and 8 to the note number, respectively.
-Here is list of the combinations using LT, LB, and RB.
+Here is list of the possible combinations of LT, LB, and RB:
 
 ```
         None = 1
@@ -52,8 +52,8 @@ Here is list of the combinations using LT, LB, and RB.
           LB = 3
      LT + LB = 4
           RB = 5
-     RB + LT = 6
-     RB + LB = 7
+     LT + RB = 6
+     LB + RB = 7
 LT + LB + RB = 8 (1 + one octave)
 ```
 
@@ -79,17 +79,31 @@ combination of shoulder buttons/triggers being held down).
 This will also reset the base note.
 
 #### Right trigger issue
-Due to a limitation in how `pygame` detects inputs, holding both LT and RT down doesn't work on Windows. It does work properly on Linux if you set `right_trigger` to `"axis_5"` in the configuration file, and it may work on Windows with some non-Xbox controllers. You can work around this issue by changing `right_trigger` to something else, or mapping your controller to a [vJoy][2] virtual joystick with the help of a tool like [FreePIE][3]. Note that the program can be used with little to no issue without using the right trigger.
 
-In order to do the latter, install both programs and run [this][4] script with FreePIE. Make sure to follow the instructions at the top of the script, then change the value of `right_trigger` in midiBox360's configuration file to `"axis_5"`, and the value of `joystick` to whichever number is appropriate; it should be either `0` or `1` if you have exactly one controller connected and one vJoy device enabled, depending on which one is detected as the first device.
+Due to a limitation in how `pygame` detects inputs, holding both LT and RT down
+doesn't work on Windows. It does work properly on Linux if you set
+`right_trigger` to `"axis_5"` in the configuration file, and it may work on
+Windows with some non-Xbox controllers. You can work around this issue either
+by changing `right_trigger` to something else, or mapping your controller to a
+[vJoy][2] virtual joystick with the help of a tool like [FreePIE][3]. Note that
+the program can be used with little to no issue without using the right trigger.
 
-### Using Other Controllers
+In order to do the latter, install both programs and run [this][4] script with
+FreePIE. Make sure to follow the instructions at the top of the script, then
+change the value of `right_trigger` in midiBox360's configuration file to
+`"axis_5"`, and the value of `joystick` to whichever number is appropriate; it
+should be either `0` or `1` if you have exactly one controller connected and one
+vJoy device enabled, depending on which one is detected as the first device. If
+the value of `joystick` does not match the the vJoy device, midiBox360 may fail
+to run or close itself when you press a button on your controller.
+
+### Using other controllers
 
 The configuration file allows full remapping of the controller, so you should be
 able to use any controller you want with midiBox360 as long as you can find out
 which value correspond to each button/axis on your controller*. Bear in mind,
 however, that midiBox360 was made with the Xbox 360 controller in mind, so this
-may no always work.
+may not always work.
 
 \*The "test" tab on the "controller properties" window on Windows counts
 starting from 1, while Python counts starting from 0, so you have to subtract 1
