@@ -71,10 +71,10 @@ Pressing up and down on the D-pad moves the base note one octave up and down,
 and pressing right and left moves the base note one semitone up or down,
 respectively.
 
-Pressing the back button (left stick on Linux) toggles a mode where each face
+Pressing the back button toggles a mode where each face
 button plays a different chord quality.
 
-Pressing start (right stick on Linux) will change the scale mode to the one
+Pressing start will change the scale mode to the one
 corresponding to the scale degree of the current note (determined by the
 combination of shoulder buttons/triggers being held down).
 This will also reset the base note.
