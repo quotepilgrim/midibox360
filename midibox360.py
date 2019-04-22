@@ -42,7 +42,7 @@ joystick = 0
 mode = 1
 
 # Select a MIDI channel to output to. Can be a number from 1 to 16.
-channel = 4
+channel = 1
 
 # Select a note to be used as the root note. Can be a number from 0 to 127.
 # 60 = middle C
