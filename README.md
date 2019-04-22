@@ -78,21 +78,10 @@ corresponding to the scale degree of the current note (determined by the
 combination of shoulder buttons/triggers being held down).
 This will also reset the base note.
 
-**NOTE:** Combinations with both LT and RT held down won't work on Windows due
-to a limitation in `pygame`. It does work properly on Linux, and it may work
-on Windows with some non-Xbox controllers. You can work around this issue by
-changing right_trigger to something else in midiBox360's configuration, or
-mapping your controller to a [vJoy][2] virtual joystick with the help of a tool
-like [FreePIE][3]. Note that the program can be used with little to no issue
-without using the right trigger.
+#### Right trigger issue
+Due to a limitation in how `pygame` detects inputs, holding both LT and RT down doesn't work on Windows. It does work properly on Linux if you set `right_trigger` to `"axis_5"` in the configuration file, and it may work on Windows with some non-Xbox controllers. You can work around this issue by changing `right_trigger` to something else, or mapping your controller to a [vJoy][2] virtual joystick with the help of a tool like [FreePIE][3]. Note that the program can be used with little to no issue without using the right trigger.
 
-In order to use freePIE + vJoy as a workaround, install both programs and run
-[this][4] script with FreePIE. Make sure to follow the instructions at the top
-of the script, then change the value of `right_trigger` in midiBox360's
-configuration file to `"axis_5"`, and the value of `joystick` to whichever
-number is appropriate; it should be either `0` or `1` if you have exactly one
-controller connected and one vJoy device enabled, depending on which one is
-detected as the first device.
+In order to do the latter, install both programs and run [this][4] script with FreePIE. Make sure to follow the instructions at the top of the script, then change the value of `right_trigger` in midiBox360's configuration file to `"axis_5"`, and the value of `joystick` to whichever number is appropriate; it should be either `0` or `1` if you have exactly one controller connected and one vJoy device enabled, depending on which one is detected as the first device.
 
 ### Using Other Controllers
 
