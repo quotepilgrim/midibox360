@@ -35,9 +35,8 @@ When you first run midiBox360, it will generate a configuration file
 editor. The file contains information on what each setting does; you don't need
 to change most of them, but it's important to note that if you want to be able
 to use it with any DAW on Windows, you will need to install a virtual MIDI cable
-(I personally recommend
-[loopMIDI](https://www.tobias-erichsen.de/software/loopmidi.html)) and type the
-name of the appropriate port in the `port` setting (i.e. "loopMIDI Port").
+(I personally recommend [loopMIDI][1]) and type the name of the appropriate port
+in the `port` setting (i.e. "loopMIDI Port").
 
 ### Using the Xbox 360 Controller
 
@@ -82,11 +81,18 @@ This will also reset the base note.
 **NOTE:** Combinations with both LT and RT held down won't work on Windows due
 to a limitation in `pygame`. It does work properly on Linux, and it may work
 on Windows with some non-Xbox controllers. You can work around this issue by
-remapping RT to something else in midiBox360's configuration, or mapping your
-controller to a [vJoy](http://vjoystick.sourceforge.net/site/)
-virtual joystick with the help of a tool like
-[FreePIE](https://andersmalmgren.github.io/FreePIE/).
-Instructions on how to do that will be linked to here soon.
+changing right_trigger to something else in midiBox360's configuration, or
+mapping your controller to a [vJoy][2] virtual joystick with the help of a tool
+like [FreePIE][3]. Note that the program can be used with little to no issue
+without using the right trigger.
+
+In order to use freePIE + vJoy as a workaround, install both programs and run
+[this][4] script with FreePIE. Make sure to follow the instructions at the top
+of the script, then change the value of `right_trigger` in midiBox360's
+configuration file to `"axis_5"`, and the value of `joystick` to whichever
+number is appropriate; it should be either `0` or `1` if you have exactly one
+controller connected and one vJoy device enabled, depending on which one is
+detected as the first device.
 
 ### Using Other Controllers
 
@@ -106,3 +112,8 @@ midiBox360 is just a silly little personal project of mine, born out of
 frustration caused by the lack of a decent way to turn a gamepad into a proper
 MIDI controller. The way the program behaves is tailored to my own personal
 needs, but I hope it may be useful to someone else.
+
+[1]: https://www.tobias-erichsen.de/software/loopmidi.html
+[2]: http://vjoystick.sourceforge.net/site/
+[3]: https://andersmalmgren.github.io/FreePIE/
+[4]: https://pastebin.com/Gh8dCztf
