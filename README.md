@@ -38,6 +38,21 @@ to use it with any DAW on Windows, you will need to install a virtual MIDI cable
 (I personally recommend [loopMIDI][1]) and type the name of the appropriate port
 in the `port` setting (i.e. "loopMIDI Port").
 
+## Listing available MIDI ports
+
+Starting with version 1.2.0, midiBox360 will output a list of all the available
+MIDI output ports when ran. You can see that list on Linux simply by running the
+program from the terminal. On Windows, open a command prompt in the program's
+folder (shift + right-click, then click on "open command window here") and type
+`midibox360.exe | more` and hit enter, then close midiBox360's window when it
+appears. Once midiBox360 is closed, the list will be displayed in the command
+prompt. The list should look something like this:
+
+`['Microsoft GS Wavetable Synth', 'Microsoft MIDI Mapper', 'loopMIDI Port']`
+
+If running the program from source on Windows, a command prompt will open itself
+and display the list whenever you open the program.
+
 ### Using the Xbox 360 controller
 
 midiBox360 will play a note when you press the A face button on the Xbox 360
