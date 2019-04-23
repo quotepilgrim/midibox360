@@ -43,10 +43,10 @@ in the `port` setting (i.e. "loopMIDI Port").
 Starting with version 1.2.0, midiBox360 will output a list of all the available
 MIDI output ports when ran. You can see that list on Linux simply by running the
 program from the terminal. On Windows, open a command prompt in the program's
-folder (shift + right-click, then click on "open command window here") and type
+folder (shift + right-click, then click on "open command window here"), type
 `midibox360.exe | more` and hit enter, then close midiBox360's window when it
 appears. Once midiBox360 is closed, the list will be displayed in the command
-prompt. The list should look something like this:
+prompt. It should look something like this:
 
 `['Microsoft GS Wavetable Synth', 'Microsoft MIDI Mapper', 'loopMIDI Port']`
 
@@ -109,7 +109,7 @@ change the value of `right_trigger` in midiBox360's configuration file to
 `"axis_5"`, and the value of `joystick` to whichever number is appropriate; it
 should be either `0` or `1` if you have exactly one controller connected and one
 vJoy device enabled, depending on which one is detected as the first device. If
-the value of `joystick` does not match the the vJoy device, midiBox360 may fail
+the value of `joystick` does not match the vJoy device, midiBox360 may fail
 to run or close itself when you press a button on your controller.
 
 ### Using other controllers
