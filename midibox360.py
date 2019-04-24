@@ -19,12 +19,12 @@ if platform.system() == 'Windows':
 else:
     config_dir = os.path.join(os.environ['HOME'], '.config')
 
-root = os.path.dirname(os.path.realpath(__file__))
+root_dir = os.path.dirname(os.path.realpath(__file__))
 config_dir = os.path.join(config_dir, 'midibox360')
 config_file = os.path.join(config_dir, 'config.toml')
 logo_path = ['/usr/share/midibox360/images',
              '/usr/local/share/midibox360/images',
-             os.path.join(root, 'res')]
+             os.path.join(root_dir, 'res')]
 logo = 'logo.png'
 
 for f in logo_path:
