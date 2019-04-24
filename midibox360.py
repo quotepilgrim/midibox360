@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+"""Xbox 360 controller to MIDI controller.
+
+This program takes inputs from an Xbox 360 controller and outputs
+MIDI messages derived from these inputs.
+"""
 
 import os
 import sys
@@ -88,15 +93,26 @@ axis_4_inv = false
 axis_5_inv = false
 """
 
-# Find which note to play.
 def msg(diastep, semitone):
+    """Finds a note to play and returns a MIDI message.
+
+    Args:
+      diastep: diatonic step
+      semitone: half step
+
+    """
     note = (base_note + semitone + 12 * octave
             + notes[play + diastep + mode]) % 128
     playing_notes.append(note)
     return mido.Message('note_on', channel=channel, note=note)
 
-# Get joystick event.
 def get_event(event):
+    """Returns a joystick event.
+
+    Args:
+      event: a value from the 'controls' table in the config file
+
+    """
     if event == 'axis_0':
         event = joystick.get_axis(0) * axis_0_inv > 0.5
     elif event == 'axis_0_neg':
@@ -132,6 +148,11 @@ def get_event(event):
     else:
         event = joystick.get_button(event)
     return event
+
+def root():
+    """Returns 'True' if any of the face buttons is being pressed."""
+    return joystick.get_button(a_button) or joystick.get_button(b_button)\
+        or joystick.get_button(x_button) or joystick.get_button(y_button)
 
 # Load configuration file if it exists. Otherwise generate default config file.
 if os.path.isfile(config_file):
@@ -250,8 +271,6 @@ while done==False:
         # Detect button presses.
         if event.type == pygame.JOYBUTTONDOWN:
             # Assign joystick events.
-            root = get_event(a_button) or get_event(b_button)\
-                or get_event(x_button) or get_event(y_button)
             chord = get_event(b_button) or get_event(x_button)
             seventh = get_event(b_button)
             set_mode = get_event(start)
@@ -294,7 +313,7 @@ while done==False:
                 mode = play % 7
                 base_note = config['base_note'] - notes[mode]
 
-            if not playing and root:
+            if not playing and root():
                 if not chord_mode:
                     # Play diationic chords.
                     outport.send(msg(0, semitone))
@@ -326,13 +345,15 @@ while done==False:
                 playing = True
 
         if event.type == pygame.JOYBUTTONUP:
-            # Release all notes.
-            playing = False
-            while len(playing_notes) > 0:
-                outport.send(mido.Message('note_off',
-                            channel=channel, note=playing_notes.pop()))
+            if not root():
+                # Release all notes.
+                playing = False
+                while len(playing_notes) > 0:
+                    outport.send(mido.Message('note_off',
+                                channel=channel, note=playing_notes.pop()))
 
     clock.tick(30)
 
+outport.reset()
 outport.close()
 pygame.quit()
