@@ -38,7 +38,7 @@ to use it with any DAW on Windows, you will need to install a virtual MIDI cable
 (I personally recommend [loopMIDI][1]) and type the name of the appropriate port
 in the `port` setting (i.e. "loopMIDI Port").
 
-## Listing available MIDI ports
+### Listing available MIDI ports
 
 Starting with version 1.2.0, midiBox360 will output a list of all the available
 MIDI output ports when ran. You can see that list on Linux simply by running the
