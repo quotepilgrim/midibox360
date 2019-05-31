@@ -93,24 +93,17 @@ corresponding to the scale degree of the current note (determined by the
 combination of shoulder buttons/triggers being held down).
 This will also reset the base note.
 
-#### Right trigger issue
+### Right trigger issue
 
 Due to a limitation in how `pygame` detects inputs, holding both LT and RT down
-doesn't work on Windows. It does work properly on Linux if you set
-`right_trigger` to `"axis_5"` in the configuration file, and it may work on
-Windows with some non-Xbox controllers. You can work around this issue either
-by changing `right_trigger` to something else, or mapping your controller to a
+may not work on Windows. It does work properly on Linux if you set
+`right_trigger` to `"axis_5"` in the configuration file, and should work on
+Windows with non-Xbox controllers. You can work around this issue either by
+changing `right_trigger` to something else, or mapping your controller to a
 [vJoy][2] virtual joystick with the help of a tool like [FreePIE][3]. Note that
 the program can be used with little to no issue without using the right trigger.
 
-In order to do the latter, install both programs and run [this][4] script with
-FreePIE. Make sure to follow the instructions at the top of the script, then
-change the value of `right_trigger` in midiBox360's configuration file to
-`"axis_5"`, and the value of `joystick` to whichever number is appropriate; it
-should be either `0` or `1` if you have exactly one controller connected and one
-vJoy device enabled, depending on which one is detected as the first device. If
-the value of `joystick` does not match the vJoy device, midiBox360 may fail
-to run or close itself when you press a button on your controller.
+Instructions on the workaround can be found on [the wiki][4].
 
 ### Using other controllers
 
@@ -120,7 +113,7 @@ which value corresponds to each button/axis on your controller. Bear in mind,
 however, that midiBox360 was made with the Xbox 360 controller in mind, so some
 may not always work.
 
-For more information and some configuration files, please check [the wiki][5].
+For more information and some configuration files, please check [the wiki][4].
 
 ## Notes
 
@@ -132,5 +125,4 @@ needs, but I hope it may be useful to someone else.
 [1]: https://www.tobias-erichsen.de/software/loopmidi.html
 [2]: http://vjoystick.sourceforge.net/site/
 [3]: https://andersmalmgren.github.io/FreePIE/
-[4]: https://pastebin.com/Gh8dCztf
-[5]: https://github.com/quotepilgrim/midibox360/wiki
+[4]: https://github.com/quotepilgrim/midibox360/wiki
