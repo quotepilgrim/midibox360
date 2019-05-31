@@ -116,13 +116,11 @@ to run or close itself when you press a button on your controller.
 
 The configuration file allows full remapping of the controller, so you should be
 able to use any controller you want with midiBox360 as long as you can find out
-which value correspond to each button/axis on your controller*. Bear in mind,
-however, that midiBox360 was made with the Xbox 360 controller in mind, so this
+which value corresponds to each button/axis on your controller. Bear in mind,
+however, that midiBox360 was made with the Xbox 360 controller in mind, so some
 may not always work.
 
-\*The "test" tab on the "controller properties" window on Windows counts
-starting from 1, while Python counts starting from 0, so you have to subtract 1
-from the ID of the button you want to map when editing the config file.
+For more information and some configuration files, please check [the wiki][5].
 
 ## Notes
 
@@ -135,3 +133,4 @@ needs, but I hope it may be useful to someone else.
 [2]: http://vjoystick.sourceforge.net/site/
 [3]: https://andersmalmgren.github.io/FreePIE/
 [4]: https://pastebin.com/Gh8dCztf
+[5]: https://github.com/quotepilgrim/midibox360/wiki
