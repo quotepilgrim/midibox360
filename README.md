@@ -53,7 +53,7 @@ prompt. It should look something like this:
 If running the program from source on Windows, a command prompt will open itself
 and display the list whenever you open the program.
 
-### Using the Xbox 360 controller
+## Using the Xbox 360 controller
 
 midiBox360 will play a note when you press the A face button on the Xbox 360
 controller. Which note is played is determined by the combination of shoulder
@@ -105,7 +105,7 @@ the program can be used with little to no issue without using the right trigger.
 
 Instructions on the workaround can be found on [the wiki][4].
 
-### Using other controllers
+## Using other controllers
 
 The configuration file allows full remapping of the controller, so you should be
 able to use any controller you want with midiBox360 as long as you can find out
