@@ -111,7 +111,7 @@ The configuration file allows full remapping of the controller, so you should be
 able to use any controller you want with midiBox360 as long as you can find out
 which value corresponds to each button/axis on your controller. Bear in mind,
 however, that midiBox360 was made with the Xbox 360 controller in mind, so this
-may not always work.
+may not work for some controllers.
 
 For more information and some configuration files, please check [the wiki][4].
 
